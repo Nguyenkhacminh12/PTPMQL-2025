@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+    <div class="card p-4 shadow-lg border-0" style="width: 100%; max-width: 500px; border-radius: 12px;">
+        <div class="card-body">
+            <h4 class="card-title text-center fw-bold mb-3 text-primary">📋 Thông Tin Người Dùng</h4>
+            <form asp-action="Index" method="post" class="d-flex flex-column gap-3">
+                <div>
+                    <label class="form-label fw-semibold">👤 Nhập họ tên:</label>
+                    <input type="text" name="FullName" class="form-control" placeholder="Nhập họ tên của bạn" />
+                </div>
+                <div>
+                    <label class="form-label fw-semibold">🏠 Nhập địa chỉ:</label>
+                    <input type="text" name="Address" class="form-control" placeholder="Nhập địa chỉ của bạn" />
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg w-100 mt-3" style="border-radius: 8px;">
+                    🚀 Gửi thông tin
+                </button>
+            </form>
+            <div class="text-center mt-4">
+                <h5 class="text-success">@ViewBag.message</h5>
+            </div>
+        </div>
+    </div>
+</div>
