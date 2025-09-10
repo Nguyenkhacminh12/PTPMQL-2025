@@ -1,0 +1,47 @@
+@model Baitapbuoi3.Models.Bai2
+
+@{
+    ViewData["Title"] = "Bài 2";
+}
+
+<div style="display:flex;justify-content:center;align-items:center;min-height:100vh;background:#f8f9fa;">
+    <div style="border:1px solid #ddd;border-radius:8px;padding:20px 30px;width:350px;background:white;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+        <h2 style="text-align:center;margin-bottom:20px;"> Bài 2 - Máy Tính</h2>
+
+        <form asp-action="Index" method="post" style="display:flex;flex-direction:column;gap:12px;">
+            <div>
+                <label>Số 1:</label><br />
+                <input asp-for="So1" style="width:100%;padding:6px;border:1px solid #ccc;border-radius:4px;" />
+                <span asp-validation-for="So1" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label>Số 2:</label><br />
+                <input asp-for="So2" style="width:100%;padding:6px;border:1px solid #ccc;border-radius:4px;" />
+                <span asp-validation-for="So2" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label>Phép tính:</label><br />
+                <select asp-for="PhepTinh" style="width:100%;padding:6px;border:1px solid #ccc;border-radius:4px;">
+                    <option value="">-- Chọn --</option>
+                    <option value="Tong">Tổng (+)</option>
+                    <option value="Hieu">Hiệu (-)</option>
+                    <option value="Tich">Tích (×)</option>
+                    <option value="Thuong">Thương (÷)</option>
+                </select>
+            </div>
+
+            <button type="submit" style="margin-top:10px;padding:10px;background:#007bff;color:white;border:none;border-radius:4px;cursor:pointer;">
+                Tính
+            </button>
+        </form>
+
+        @if (Model?.Ketqua is not null)
+        {
+            <div style="margin-top:15px;padding:10px;background:#e9f7ef;border:1px solid #28a745;border-radius:4px;color:#155724;">
+                 Kết quả: <strong>@Model.Ketqua</strong>
+            </div>
+        }
+    </div>
+</div>

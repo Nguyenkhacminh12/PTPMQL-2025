@@ -1,0 +1,44 @@
+@model Baitapbuoi3.Models.BMI
+
+@{
+    ViewData["Title"] = "Tính BMI";
+}
+
+<div style="display:flex;justify-content:center;align-items:center;min-height:100vh;background:#f8f9fa;">
+    <div style="border:1px solid #ddd;border-radius:8px;padding:20px 30px;width:350px;background:white;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+        <h2 style="text-align:center;margin-bottom:20px;"> Bài 3 - Tính BMI</h2>
+
+        <form asp-action="Index" method="post" style="display:flex;flex-direction:column;gap:12px;">
+            <div>
+                <label>Họ tên:</label><br />
+                <input asp-for="Ten" style="width:100%;padding:6px;border:1px solid #ccc;border-radius:4px;" />
+            </div>
+
+            <div>
+                <label>Tuổi:</label><br />
+                <input asp-for="Tuoi" style="width:100%;padding:6px;border:1px solid #ccc;border-radius:4px;" />
+            </div>
+
+            <div>
+                <label>Chiều cao (cm):</label><br />
+                <input asp-for="ChieuCao" style="width:100%;padding:6px;border:1px solid #ccc;border-radius:4px;" />
+            </div>
+
+            <div>
+                <label>Cân nặng (kg):</label><br />
+                <input asp-for="CanNang" style="width:100%;padding:6px;border:1px solid #ccc;border-radius:4px;" />
+            </div>
+
+            <button type="submit" style="margin-top:10px;padding:10px;background:#007bff;color:white;border:none;border-radius:4px;cursor:pointer;">
+                Tính BMI
+            </button>
+        </form>
+
+        @if (ViewBag.KetQua != null)
+        {
+            <div style="margin-top:15px;padding:10px;background:#e9f7ef;border:1px solid #28a745;border-radius:4px;color:#155724;">
+                <strong>@ViewBag.KetQua</strong>
+            </div>
+        }
+    </div>
+</div>

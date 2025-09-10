@@ -1,0 +1,55 @@
+@model Baitapbuoi3.Models.Thongtin
+
+@{
+    ViewData["Title"] = "Bài 1";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+    <div class="card shadow-lg border-0 p-4" style="width: 100%; max-width: 600px; border-radius: 12px;">
+        <div class="card-body">
+            <h3 style="text-align:center;margin-bottom:20px;">Bài 1 - Nhập Thông Tin Cá Nhân</h3>
+
+            <form asp-action="Index" method="post" class="row g-3">
+                <!-- Họ tên -->
+                <div class="col-12">
+                    <label asp-for="Hoten" class="form-label fw-semibold"></label>
+                    <input asp-for="Hoten" class="form-control" placeholder="Nhập họ và tên đầy đủ" />
+                    <span asp-validation-for="Hoten" class="text-danger small"></span>
+                </div>
+
+                <!-- Giới tính -->
+                <div class="col-md-6">
+                    <label asp-for="Gioitinh" class="form-label fw-semibold"></label>
+                    <select asp-for="Gioitinh" class="form-select">
+                        <option value="">-- Chọn giới tính --</option>
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                        <option value="Khác">Khác</option>
+                    </select>
+                    <span asp-validation-for="Gioitinh" class="text-danger small"></span>
+                </div>
+
+                <!-- Ngày sinh -->
+                <div class="col-md-6">
+                    <label asp-for="Ngaysinh" class="form-label fw-semibold">Năm sinh</label>
+                    <input asp-for="Ngaysinh" type="number" class="form-control" placeholder="VD: 2000" />
+                    <span asp-validation-for="Ngaysinh" class="text-danger small"></span>
+                </div>
+
+                <!-- Địa chỉ -->
+                <div class="col-12">
+                    <label asp-for="Diachi" class="form-label fw-semibold"></label>
+                    <input asp-for="Diachi" class="form-control" placeholder="Nhập địa chỉ liên hệ" />
+                    <span asp-validation-for="Diachi" class="text-danger small"></span>
+                </div>
+
+                <!-- Submit -->
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-lg w-100" style="border-radius: 8px;">
+                         Gửi thông tin
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

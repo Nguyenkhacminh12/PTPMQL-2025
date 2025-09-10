@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "Baitapbuoi3/1.0.0": {
+        "runtime": {
+          "Baitapbuoi3.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Baitapbuoi3/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
