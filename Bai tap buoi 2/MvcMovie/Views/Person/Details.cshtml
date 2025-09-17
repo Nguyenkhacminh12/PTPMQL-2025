@@ -1,0 +1,28 @@
+@model MvcMovie.Models.Person
+@{
+    ViewData["Title"] = "Person Details";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+    <div class="card shadow-lg border-0 p-4" style="width: 100%; max-width: 500px; border-radius: 12px;">
+        <div class="card-body">
+            <h4 class="card-title text-center fw-bold mb-4 text-info"> Chi Tiết Người Dùng</h4>
+
+            <dl class="row">
+                <dt class="col-sm-4"> Person ID</dt>
+                <dd class="col-sm-8">@Model.PersonId</dd>
+
+                <dt class="col-sm-4"> Họ tên</dt>
+                <dd class="col-sm-8">@Model.FullName</dd>
+
+                <dt class="col-sm-4"> Địa chỉ</dt>
+                <dd class="col-sm-8">@Model.Address</dd>
+            </dl>
+
+            <div class="d-flex gap-2 mt-4">
+                <a asp-action="Edit" asp-route-id="@Model.PersonId" class="btn btn-warning w-100"> Sửa</a>
+                <a asp-action="Index" class="btn btn-outline-secondary w-100"> Quay lại</a>
+            </div>
+        </div>
+    </div>
+</div>

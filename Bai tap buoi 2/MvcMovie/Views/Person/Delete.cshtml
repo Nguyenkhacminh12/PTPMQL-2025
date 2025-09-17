@@ -1,0 +1,28 @@
+@model MvcMovie.Models.Person
+@{
+    ViewData["Title"] = "Delete Person";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+    <div class="card shadow-lg border-0 p-4" style="width: 100%; max-width: 500px; border-radius: 12px;">
+        <div class="card-body text-center">
+            <h4 class="card-title fw-bold mb-3 text-danger"> Xoá Người Dùng</h4>
+            <p>Bạn có chắc chắn muốn xoá <strong>@Model.FullName</strong> không?</p>
+
+            <dl class="row text-start">
+                <dt class="col-sm-4"> Person ID</dt>
+                <dd class="col-sm-8">@Model.PersonId</dd>
+                <dt class="col-sm-4">👤 Họ tên</dt>
+                <dd class="col-sm-8">@Model.FullName</dd>
+                <dt class="col-sm-4"> Địa chỉ</dt>
+                <dd class="col-sm-8">@Model.Address</dd>
+            </dl>
+
+            <form asp-action="Delete" method="post" class="mt-3">
+                <input type="hidden" asp-for="PersonId" />
+                <button type="submit" class="btn btn-danger btn-lg w-100 mb-2"> Xoá</button>
+                <a asp-action="Index" class="btn btn-outline-secondary w-100"> Quay lại</a>
+            </form>
+        </div>
+    </div>
+</div>

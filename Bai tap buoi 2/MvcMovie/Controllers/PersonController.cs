@@ -1,21 +1,98 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MvcMovie.Data;
 using MvcMovie.Models;
-using System.Text.Encodings.Web;
+
 namespace MvcMovie.Controllers
 {
     public class PersonController : Controller
     {
+        private readonly ApplicationDbContext _context;
+        public PersonController(ApplicationDbContext context) => _context = context;
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var data = await _context.Person.ToListAsync();
+            return View(data);
         }
+
+        public async Task<IActionResult> Details(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id)) return NotFound();
+
+            var person = await _context.Person.FirstOrDefaultAsync(x => x.PersonId == id);
+            if (person == null) return NotFound();
+
+            return View(person);
+        }
+
+        public IActionResult Create() => View();
+
         [HttpPost]
-        public IActionResult Index(Person ps)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("PersonId,FullName,Address")] Person person)
         {
-            string Messeger = "Xin Chào " + ps.PersonID + " - " + ps.FullName + " - " + ps.Address;
-            ViewBag.Messeger = Messeger;
-            return View();
+            if (!ModelState.IsValid) return View(person);
+
+            _context.Add(person);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Edit(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id)) return NotFound();
+
+            var person = await _context.Person.FindAsync(id);
+            if (person == null) return NotFound();
+
+            return View(person);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(string id, [Bind("PersonId,FullName,Address")] Person person)
+        {
+            if (id != person.PersonId) return NotFound();
+            if (!ModelState.IsValid) return View(person);
+
+            try
+            {
+                _context.Update(person);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PersonExists(person.PersonId)) return NotFound();
+                throw;
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id)) return NotFound();
+
+            var person = await _context.Person.FirstOrDefaultAsync(m => m.PersonId == id);
+            if (person == null) return NotFound();
+
+            return View(person);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            var person = await _context.Person.FindAsync(id);
+            if (person != null)
+            {
+                _context.Person.Remove(person);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool PersonExists(string id) =>
+            _context.Person.Any(e => e.PersonId == id);
     }
 }

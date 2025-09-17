@@ -1,34 +1,45 @@
-<h1>Dữ liệu từ Controller gửi về là: @ViewBag.Messeger</h1>
+@model IEnumerable<MvcMovie.Models.Person>
 
-<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
-    <div class="card shadow-lg border-0 p-4" style="width: 100%; max-width: 500px; border-radius: 12px;">
-        <div class="card-body">
-            <h4 class="card-title text-center fw-bold mb-4 text-primary">📋 Nhập Thông Tin Người Dùng</h4>
-            
-            <form asp-action="Index" method="post" class="d-flex flex-column gap-3">
-                <!-- PersonID -->
-                <div>
-                    <label class="form-label fw-semibold">🆔 Person ID:</label>
-                    <input type="text" name="PersonID" class="form-control" placeholder="Nhập mã Person ID" required />
+@{
+    ViewData["Title"] = "Danh sách Person";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold text-primary"> Danh sách Người Dùng</h3>
+        <a asp-action="Create" class="btn btn-success">
+             Thêm mới
+        </a>
+    </div>
+
+    <div class="row g-3">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card shadow-sm border-0 h-100" style="border-radius: 12px;">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold text-dark"> @item.FullName</h5>
+                            <p class="card-text mb-1"><strong> Person ID:</strong> @item.PersonId</p>
+                            <p class="card-text"><strong> Địa chỉ:</strong> @item.Address</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 d-flex gap-2">
+                            <a asp-action="Details" asp-route-id="@item.PersonId" class="btn btn-outline-info btn-sm w-100"> Xem</a>
+                            <a asp-action="Edit" asp-route-id="@item.PersonId" class="btn btn-warning btn-sm w-100"> Sửa</a>
+                            <a asp-action="Delete" asp-route-id="@item.PersonId" class="btn btn-danger btn-sm w-100"> Xoá</a>
+                        </div>
+                    </div>
                 </div>
-
-                <!-- FullName -->
-                <div>
-                    <label class="form-label fw-semibold">👤 Họ tên:</label>
-                    <input type="text" name="FullName" class="form-control" placeholder="Nhập họ tên đầy đủ" required />
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <div class="alert alert-warning text-center">
+                     Không có dữ liệu nào!
                 </div>
-
-                <!-- Address -->
-                <div>
-                    <label class="form-label fw-semibold">🏠 Địa chỉ:</label>
-                    <input type="text" name="Address" class="form-control" placeholder="Nhập địa chỉ của bạn" />
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary btn-lg w-100 mt-3" style="border-radius: 8px;">
-                    🚀 Gửi dữ liệu
-                </button>
-            </form>
-        </div>
+            </div>
+        }
     </div>
 </div>
