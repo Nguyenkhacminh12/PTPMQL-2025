@@ -1,4 +1,7 @@
-@model IEnumerable<MvcMovie.Models.Person>
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<MvcMovie.Models.Person>
+
 
 @{
     ViewData["Title"] = "Danh sách Person";
@@ -10,6 +13,7 @@
         <a asp-action="Create" class="btn btn-success">
              Thêm mới
         </a>
+        <a class="btn btn-success" asp-action="Download"> Download</a>
     </div>
 
     <div class="row g-3">
@@ -42,4 +46,12 @@
             </div>
         }
     </div>
+@Html.PagedListPager(
+    Model,
+    page => Url.Action("Index", new { page }),
+    new X.PagedList.Mvc.Core.PagedListRenderOptions
+    {
+        LiElementClasses = new[] { "page-item" },
+        PageClasses      = new[] { "page-link" }
+    })
 </div>

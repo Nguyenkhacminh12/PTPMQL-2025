@@ -5,6 +5,17 @@
 
 <h1 class="text-center mb-3">Dữ liệu từ Controller gửi về là: @ViewBag.Messeger</h1>
 
+<hr>
+<form asp-action="Upload" enctype="multipart/form-data">
+    <div class="row form-control">
+        <label class="col-sm-2">Import data from Excel: </label>
+        <input type="file" name="file" class="col-sm-4" />
+        <input type="submit" value="Upload" class="btn btn-primary col-sm-1" />
+    </div>
+</form>
+
+
+<hr />
 <div class="d-flex justify-content-center align-items-center vh-100 bg-light">
     <div class="card shadow-lg border-0 p-4" style="width: 100%; max-width: 500px; border-radius: 12px;">
         <div class="card-body">
